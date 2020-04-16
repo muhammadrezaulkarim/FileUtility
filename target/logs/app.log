@@ -1,0 +1,4 @@
+2020-04-15 22:52:19,464 ERROR a.FileExtensionCounterApp [main] Encountered exception while reading input file: C://Users//r_kar//test//data\log.json Details:C:\Users\r_kar\test\data\log.json (The system cannot find the path specified)
+2020-04-15 22:53:06,714 INFO a.FileExtensionCounterApp [main] ext: 1
+
+2020-04-15 22:53:06,719 INFO a.FileExtensionCounterApp [main] pdf: 1
