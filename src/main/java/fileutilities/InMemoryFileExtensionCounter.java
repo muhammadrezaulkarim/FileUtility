@@ -8,26 +8,28 @@ import java.util.Map;
 public class InMemoryFileExtensionCounter implements FileExtensionCounter {
 
 	private Map<String, Integer> fileExtensionUniqueFileCounter = new HashMap<String, Integer>();
-	private Map<String, String> fileExtensionUniqueFiles = new HashMap<String, String>();
+	private Map<String, List<String>> fileExtensionUniqueFiles = new HashMap<String, List<String>>();
 
 	public boolean loadFileExtensionData(String fileExtension, String fileName) {
 
 		boolean dataLoaded = false;
 
-		String uniqueFiles = fileExtensionUniqueFiles.get(fileExtension);
+		List<String> uniqueFiles = fileExtensionUniqueFiles.get(fileExtension);
 
 		// no entries for this file extension
 		if (uniqueFiles == null) {
-			fileExtensionUniqueFiles.put(fileExtension, fileName);
+			ArrayList<String> fileList = new ArrayList<String>();
+			fileList.add(fileName);
+			fileExtensionUniqueFiles.put(fileExtension, fileList);
 		} else {
 			// do not load the data if the filename already exists
-			if (uniqueFiles.indexOf(fileName) >= 0) {
+			if (uniqueFiles.contains(fileName)) {
 				dataLoaded = false;
 				return dataLoaded;
 			}
 
 			// store new filename as it does not exist
-			uniqueFiles = uniqueFiles + ";" + fileName;
+			uniqueFiles.add(fileName);
 			fileExtensionUniqueFiles.put(fileExtension, uniqueFiles);
 		}
 
